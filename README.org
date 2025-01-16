@@ -1,0 +1,5 @@
+#+title: Build an AI Agent from Scratch with Mistral
+#+date: [2025-01-16 Thu]
+#+startup: indent
+* mistral-agent-from-scratch
+Like the Front End Masters Course, build an AI agent from scratch, but with Mistral
