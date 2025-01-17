@@ -1,0 +1,19 @@
+{
+  "name": "a1",
+  "version": "1.0.0",
+  "description": "mistral agent",
+  "main": "index.ts",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-personal:Xavier-Brinon/mistral-agent-from-scratch.git"
+  },
+  "keywords": [
+    "mistral",
+    "agent"
+  ],
+  "author": "Xavier-Brinon",
+  "license": "ISC"
+}

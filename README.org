@@ -1,5 +1,50 @@
 #+title: Build an AI Agent from Scratch with Mistral
 #+date: [2025-01-16 Thu]
 #+startup: indent
+#+property: header-args :results output
 * mistral-agent-from-scratch
-Like the Front End Masters Course, build an AI agent from scratch, but with Mistral
+Like the Front End Masters Course, build an AI agent from scratch, but with
+Mistral.
+* Start a node project with TS
+Since the last version of *Node*, as of today, support TS, I'll just let the IDE
+handle the types and run without transpiling.
+In the root of the folder:
+#+begin_src bash
+  npm init -y
+#+end_src
+
+Some basic settings to begin with:
+- Main entry point is =index.ts=. I write directly in typescript and let *Node*
+  do the stripping. I will probably have to use only a subset of the TS features
+  available.
+- Tests will run with the built in test runner ~node --test~.
+  *Node* will run against any file that ends with =.test.ts=
+* Env
+To work with *Mistral*, I need an API key. I will also need to use it as an Env
+variable. *DotEnvX* kicks ass so I'll go with this one.
+See https://dotenvx.com/docs/quickstart
+** Create the .env files
+- .env :: as a template listing all the variables but leave them empty
+- .env.local :: using the keys for the test environment
+- .env.production :: using the keys for production
+** Encrypt all values
+let's do a quick test:
+#+name: set env var
+#+begin_src bash
+  dotenvx set HELLO "local" -f .env.local
+#+end_src
+
+#+RESULTS: set env var
+: ✔ set HELLO with encryption (.env.local)
+: ✔ key added to .env.keys (DOTENV_PRIVATE_KEY_LOCAL)
+: ℹ add .env.keys to .gitignore: [echo ".env.keys" >> .gitignore]
+: ℹ run [DOTENV_PRIVATE_KEY_LOCAL='...' dotenvx get HELLO] to test decryption locally
+
+It stores the public key and the encrypted value in the =.env.local=, it can be
+gitignored as well as the local version is by definition local only.
+The production one can be pushed to the repo as long as the private key remains
+private.
+⚜️ DotEnvX finds the .env.keys file and use it to decrypt the file, so you can
+run ~dotenvx get HELLO -f .env.local~ to display the decrypted value.
+** Mistral API
+I create 2 keys, one for local and one for production.
