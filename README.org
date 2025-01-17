@@ -19,6 +19,13 @@ Some basic settings to begin with:
   available.
 - Tests will run with the built in test runner ~node --test~.
   *Node* will run against any file that ends with =.test.ts=
+
+
+Because Typescript doesn't understand *Node* types, I need to also install them.
+#+name: install node types
+#+begin_src bash
+  npm i -D @types/node
+#+end_src
 * Env
 To work with *Mistral*, I need an API key. I will also need to use it as an Env
 variable. *DotEnvX* kicks ass so I'll go with this one.
@@ -46,5 +53,23 @@ The production one can be pushed to the repo as long as the private key remains
 private.
 ⚜️ DotEnvX finds the .env.keys file and use it to decrypt the file, so you can
 run ~dotenvx get HELLO -f .env.local~ to display the decrypted value.
-** Mistral API
+** Mistral API Keys
 I create 2 keys, one for local and one for production.
+Set them up in =.env.local= and =.env.production=.
+* Mistral API
+Based on the Mistral's [[https://docs.mistral.ai/getting-started/quickstart/#getting-started-with-mistral-ai-api][quickstart]],
+I create a script to call and display the chat response.
+** NPM package
+Install the *Mistral* npm package
+#+name: install mistral packagge
+#+begin_src bash
+  npm i @mistralai/mistralai
+#+end_src
+** Models
+The example given is using the latest modal, but there are free, older ones.
+- Pixtral :: pixtral-12b-2409
+- Mistral Nemo :: open-mistral-nemo
+- Codestral Mamba :: open-codestral-mamba
+
+
+I create a const file with those models available.
