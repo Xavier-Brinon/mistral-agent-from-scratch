@@ -73,3 +73,17 @@ The example given is using the latest modal, but there are free, older ones.
 
 
 I create a const file with those models available.
+* Reading inputs
+There is an [[https://nodejs.org/docs/latest/api/readline.html#readline][example]] on *Node* documentation.
+* TigerBeetle
+I'm trying to follow some common sense based on the TigerBeetle [[https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/TIGER_STYLE.md][manifesto]].
+mainly the part on *Assertions*
+#+begin_quote
+Assert all function arguments and return values, pre/postconditions and
+invariants. A function must not operate blindly on data it has not checked.
+The purpose of a function is to increase the probability that a program is
+correct.
+Assertions within a function are part of how functions serve this purpose.
+The assertion density of the code must average a minimum of two assertions per
+function.
+#+end_quote

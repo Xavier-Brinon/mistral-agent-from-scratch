@@ -1,19 +1,16 @@
-import { Mistral } from '@mistralai/mistralai'
-import { mistralModels } from './models.ts'
+import * as readline from 'node:readline/promises'
+import { stdin as input, stdout as output } from 'node:process'
+import assert from 'node:assert/strict'
+import { runLLM } from './runLLM.ts'
 
-const apiKey = process.env.MISTRAL_API_KEY
-const client = new Mistral({ apiKey })
+const rl = readline.createInterface({ input, output })
 
-const chatResponse = await client.chat.complete({
-  model: mistralModels.MistralNemo,
-  messages: [
-    {
-      role: 'user',
-      content: 'What is the best french cheese?'
-    }
-  ]
-})
+const userInput = await rl.question('What do you want to ask the agent? ')
+assert.ok(userInput !== '', 'User did not provide a prompt')
+
+rl.close()
+
+const chatResponse = await runLLM(userInput)
 
 console.debug({ chatResponse: JSON.stringify(chatResponse, null, 2) })
 console.log(chatResponse?.choices?.[0].message.content)
-
