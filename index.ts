@@ -1,16 +1,16 @@
 import * as readline from 'node:readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
+import { signal } from './abortController.ts'
 import assert from 'node:assert/strict'
 import { runLLM } from './runLLM.ts'
 
-const rl = readline.createInterface({ input, output })
+const cli = readline.createInterface({ input, output })
 
-const userInput = await rl.question('What do you want to ask the agent? ')
+const userInput = await cli.question('What do you want to ask the agent? ', { signal })
 assert.ok(userInput !== '', 'User did not provide a prompt')
 
-rl.close()
+cli.close()
 
-const chatResponse = await runLLM(userInput)
+const chatResponse = await runLLM(userInput, { fetchOptions: {signal} })
 
-console.debug({ chatResponse: JSON.stringify(chatResponse, null, 2) })
-console.log(chatResponse?.choices?.[0].message.content)
+console.info(chatResponse?.choices?.[0].message.content)
