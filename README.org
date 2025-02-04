@@ -102,4 +102,7 @@ For now I'll get the prompt via the ~readline~ interface.
 * TODO Read the article about the alternatives to enum              :ARTICLE:
 Axel wrote an [[https://2ality.com/2025/01/typescript-enum-patterns.html][article]] about the Typescript ~enum~ and its alternatives.
 Could be relevant when listing the Mistral models.
-* TODO Handle ~SIGTERM~
+* DONE Handle ~SIGTERM~
+* Ollama
+I think it would be actually funnier to do it 100% local using Ollama
+Let's make a new repo!
